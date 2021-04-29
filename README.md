@@ -14,12 +14,15 @@
 
 ## <a name="background"></a> Background
 
-Matplotlib is a graph plotting library in python that serves as a visualization utility.<br />
-It is a comprehensive library for creating static, animated, and interactive visualizations in Python and It can also be used in python 
-scripts, shell, web application servers and other graphical user interface toolkits.<br />
+In this repository, we are converting the datas in CSV file to Python data structures and using this, we are going to plot differentkind of 
+graphs  using the module Matplotlib for data analysis.
 
 
 ### <a name="intro"></a>Introduction & Types
+
+Matplotlib is a graph plotting library in python that serves as a visualization utility.<br />
+It is a comprehensive library for creating static, animated, and interactive visualizations in Python and It can also be used in python 
+scripts, shell, web application servers and other graphical user interface toolkits.<br />
 
 There are various plots which can be created using python matplotlib and basic codes in python matplotlib in order to generate a 
 simple graph.
