@@ -56,54 +56,26 @@ def create_bar_graph():
     plt.bar(join_year,Average_salary_male,
     label="Male", color='r',width=.5)
     create_plot('Average Salary(Based on join Year)', 'Year', 'Average Salary', "bar_graph")
-    print(Average_salary_female)
-    print(Average_salary_male)
-
-'''
-
-
-
-
-data_ages_comp = data.sort_values("Age_in_Company")
-data_ages_company = data_ages_comp["Age_in_Company"].tolist()
-
-join_year = []
-[join_year.append(x) for x in year_of_join if x not in join_year]
-count_age_in_company = []
-for i in age_in_company:
-   y = data[data["Age_in_Company"] == i].count()["Age_in_Company"]
-   count_age_in_company.append(y)
-plt.bar(age_in_company,count_age_in_company,width=.5)
-plt.xlabel('Age')
-plt.ylabel('count of employees')
-plt.title('Experience in comapany')
-plt.savefig("Histogram")
-
 
 def create_histogram():
-    population_age = [22,55,62,45,21,22,34,42,42,4,2,102,95,85,55,110,120,70,65,55,111,115,80,75,65,54,44,43,42,48]
-    bins = [0,10,20,30,40,50,60,70,80,90,100]
-    plt.hist(population_age, bins, histtype='bar', rwidth=0.8)
-    plt.xlabel('age groups')
-    plt.ylabel('Number of people')
-    plt.title('Histogram')
-    plt.show()
+    age_employee = sorted_gender["Age"].tolist()
+    bins = []
+    [bins.append(x) for x in range(20,65,5)]
+    plt.hist(age_employee, bins, histtype='bar', rwidth=0.3)
+    create_plot('Age Info', 'Age', 'Count', "histogram")
 
 def create_scatter_plot():
-    x = [1,1.5,2,2.5,3,3.5,3.6]
-    y = [7.5,8,8.5,9,9.5,10,10.5]
-    
-    x1=[8,8.5,9,9.5,10,10.5,11]
-    y1=[3,3.5,3.7,4,4.5,5,5.2]
-    
-    plt.scatter(x,y, label='high income low saving',color='r')
-    plt.scatter(x1,y1,label='low income high savings',color='b')
-    plt.xlabel('saving*100')
-    plt.ylabel('income*1000')
-    plt.title('Scatter Plot')
-    plt.legend()
-    plt.show()
+    gender_female = sorted_gender[sorted_gender["Gender"] == "Female"]
+    gender_male = sorted_gender[sorted_gender["Gender"] == "Male"]
+    age_female = gender_female["Age_in_Company"].tolist()
+    age_male = gender_male["Age_in_Company"].tolist()
+    salary_female = gender_female["Salary"].tolist()
+    salary_male = gender_male["Salary"].tolist()
+    plt.scatter(salary_female, age_female, label='Female',color='r')
+    plt.scatter(salary_male, age_male,label='Male',color='b')
+    create_plot('Salary Info(Male vs Female)', 'Age Of Experience', 'Salary', "Scatter Plot")
 
+'''
 def create_pie_chart():
     days = [1,2,3,4,5]
 
@@ -165,3 +137,5 @@ plt.show()
 if __name__ == "__main__":
     create_line_graph()
     create_bar_graph()
+    create_histogram()
+    create_scatter_plot()
