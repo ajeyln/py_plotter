@@ -3,22 +3,46 @@
 ## Table of Content
 
 * [Background](#background)
-* [Introduction & Types](#intro)
+* [Tasks(#task)
+* [Technical Terms](#tech)
     + [Line Graph](#line)
     + [Bar Graph](#bar)
     + [Histogram](#Histogram)
     + [Scatter Plot](#Scatter)
-    + [Area plot](#Area)
     + [Pie Chart](#pie)
 * [Useful Links](#useful)
 
 ## <a name="background"></a> Background
 
-In this repository, we are converting the datas in CSV file to Python data structures and using this, we are going to plot differentkind of 
+In this repository, we are converting the datas in CSV file to Python data structures and using this, we are going to plot different kind of 
 graphs  using the module Matplotlib for data analysis.
 
 
-### <a name="intro"></a>Introduction & Types
+## <a name="task"></a>Task
+
+Based on the CSV data file, we have plotted 5 kind of graphs, which has follows:
+
+### 1. Line Graph
+
+The line graph shows Employee count with respect to their joining year and there are two lines, one reprsents to Female and another to Male in a company.
+
+### 2.Bar Graph
+
+In this task, The Bar graph shows the Average salary of the Female and Male based on their joing years.
+
+### 3. Histogram
+
+In this section, we are plotting the graph based on Employees age with duration of 5 Years.
+
+### 4. Scatter Plot
+
+The scatter graph shows the salary of Male and Female based on their experience on company.
+
+### 5. Pie Chart
+
+In the Piechart, we can find the agewise employee percentage of company.
+
+### <a name="tech"></a>Technical Terms
 
 Matplotlib is a graph plotting library in python that serves as a visualization utility.<br />
 It is a comprehensive library for creating static, animated, and interactive visualizations in Python and It can also be used in python 
@@ -155,38 +179,6 @@ plt.show()
 ![Scatter](./images/image6.png)<br />
 The data is displayed as a collection of points having ‘high income low salary’ and ‘low income high salary’.
 
-### <a name="Area"></a>5. Area plot
-
-Area plots are pretty much similar to the line plot. They are also known as stack plots.
-These plots can be used to track changes over time for two or more related groups that make up one whole category.
-
-Eg:
-```python
-import matplotlib.pyplot as plt
-days = [1,2,3,4,5]
-  
- sleeping =[7,8,6,11,7]
- eating = [2,3,4,3,2]
- working =[7,8,7,2,2]
- playing = [8,5,7,8,13]
-  
- plt.plot([],[],color='m', label='Sleeping', linewidth=5)
- plt.plot([],[],color='c', label='Eating', linewidth=5)
- plt.plot([],[],color='r', label='Working', linewidth=5)
- plt.plot([],[],color='k', label='Playing', linewidth=5)
-  
- plt.stackplot(days, sleeping,eating,working,playing, colors=['m','c','r','k'])
-  
- plt.xlabel('x')
- plt.ylabel('y')
- plt.title('Stack Plot')
- plt.legend()
- plt.show()
-```
-
-![Area](./images/image7.png) <br />
-we have time spent based on the categories. Therefore, area plot or 
-stack plot is used to show trends over time, among different attributes.
 
 ### <a name="pie"></a>6. Pie Chart
 A pie chart refers to a circular graph which is broken down into segments i.e. slices of pie.
@@ -218,7 +210,7 @@ plt.title('Pie Plot')
 plt.show()
 ```
 
-![pie](./images/image8.png) <br />
+![pie](./images/image7.png) <br />
 In the above pie chart, we have divided the circle into 4 sectors or slices which represents the respective category
 (playing, sleeping, eating and working) along with the percentage they hold. Now, if we have noticed these slices
 adds up to 24 hrs, but the calculation of pie slices is automatically done.
