@@ -2,6 +2,7 @@ from matplotlib import pyplot as plt
 from matplotlib import style
 import pandas
 import os
+from fpdf import FPDF
 
 data = pandas.read_csv("data.csv")
 sorted_gender = data.sort_values("Gender")
@@ -18,7 +19,17 @@ def create_plot(title, xlabel, ylabel, filename):
     plt.legend(loc ="upper right", prop={"size":10})
     filepath = os.path.join(FILE_NAME, filename)
     plt.savefig(filepath)
-    return
+def create_histogram():
+    age_employee = sorted_gender["Age"].tolist()
+    bins = []
+    [bins.append(x) for x in range(20,65,5)]
+    plt.hist(age_employee, bins, histtype='bar', rwidth=0.3)
+    plt.title('Age Info')
+    plt.ylabel('Count')
+    plt.xlabel('Age')
+    plt.legend(loc ="upper right", prop={"size":10})
+    filepath = os.path.join(FILE_NAME, "03_histogram")
+    plt.savefig(filepath)
 
 def create_line_graph():
     style.use('ggplot')
@@ -58,12 +69,6 @@ def create_bar_graph():
     plt.bar(join_year,Average_salary_male,
     label="Male", color='r',width=.5)
     create_plot('Average Salary(Based on join Year)', 'Year', 'Average Salary', "02_bar_graph")
-def create_histogram():
-    age_employee = sorted_gender["Age"].tolist()
-    bins = []
-    [bins.append(x) for x in range(20,65,5)]
-    plt.hist(age_employee, bins, histtype='bar', rwidth=0.3)
-    create_plot('Age Info', 'Age', 'Count', "03_histogram")
 
 def create_scatter_plot():
     gender_female = sorted_gender[sorted_gender["Gender"] == "Female"]
@@ -74,7 +79,12 @@ def create_scatter_plot():
     salary_male = gender_male["Salary"].tolist()
     plt.scatter(salary_female, age_female, label='Female',color='r')
     plt.scatter(salary_male, age_male,label='Male',color='b')
-    create_plot('Salary Info(Male vs Female)', 'Age Of Experience', 'Salary', "04_scatter_plot")
+    plt.title('Salary Info(Male vs Female)')
+    plt.ylabel('Salary')
+    plt.xlabel('Age Of Experience')
+    plt.legend(loc ="upper right", prop={"size":10})
+    filepath = os.path.join(FILE_NAME, "04_scatter_plot")
+    plt.savefig(filepath)
 
 def create_pie_chart():
     less_than_35 = sorted_age[sorted_age["Age"] <= 35].count()["First Name"]
@@ -90,15 +100,39 @@ def create_pie_chart():
     startangle=90,
     shadow= True,
     autopct='%1.1f%%')
-
     plt.title('Age of Employees')
     plt.legend()
-    plt.savefig('05_pie_chart')
+    filepath = os.path.join(FILE_NAME, '05_pie_chart')
+    plt.savefig(filepath)
+
+def create_pdf():
+    pdf = FPDF(orientation='P', unit='mm', format='A4')
+    pdf.add_page()
+    pdf.set_font("Arial", size = 15)
+    pdf.cell(225, 10, txt= "Statistical Report", ln = 1, align = "C")
+    pdf.multi_cell(200, 10, txt= "The line graph shows Employee count with respect to their joining year and there are two lines, one reprsents to Female and another to Male in a company.", align = "l")
+    file_image1 = os.path.join(FILE_NAME, "01_line_plot.png")
+    pdf.image(file_image1, x = None, y = None, w=700/5, h=450/5, type = '')
+    pdf.cell(200, 10, txt= "In this task, The Bar graph shows the Average salary of the Female and Male based on their joing years.", ln = 4, align = "l")
+    file_image2 = os.path.join(FILE_NAME, "02_bar_graph.png")
+    pdf.image(file_image2, x = None, y = None, w=700/5, h=450/5, type = '')
+    pdf.cell(200, 10, txt= "In this section, we are plotting the graph based on Employees age with duration of 5 Years.", ln = 6, align = "l")
+    file_image3 = os.path.join(FILE_NAME, "03_histogram.png")
+    pdf.image(file_image3, x = None, y = None, w=700/5, h=450/5, type = '')
+    pdf.cell(200, 10, txt= "The scatter graph shows the salary of Male and Female based on their experience on company.", ln = 8, align = "l")
+    file_image4 = os.path.join(FILE_NAME, "04_scatter_plot.png")
+    pdf.image(file_image4, x = None, y = None, w=700/5, h=450/5, type = '')
+    pdf.cell(200, 10, txt= "In the Piechart, we can find the agewise employee percentage of company.",ln = 10, align = "l")
+    file_image5 = os.path.join(FILE_NAME, "05_pie_chart.png")
+    pdf.image(file_image5, x = None, y = None, w=700/5, h=450/5, type = 'png', link = '')
+    pdf_path = os.path.join(CURRENT_DIR, "statistics")
+    pdf_file = os.path.join(pdf_path, "Statistic.pdf")
+    pdf.output(pdf_file,'F')
 
 if __name__ == "__main__":
+    create_histogram()
     create_line_graph()
     create_bar_graph()
-    create_histogram()
     create_scatter_plot()
     create_pie_chart()
-
+    create_pdf()

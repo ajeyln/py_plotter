@@ -4,7 +4,7 @@
 
 * [Background](#background)
 * [Tasks(#task)
-* [Technical Terms](#tech)
+* [Technical Specification](#tech)
     + [Line Graph](#line)
     + [Bar Graph](#bar)
     + [Histogram](#Histogram)
@@ -42,7 +42,7 @@ The scatter graph shows the salary of Male and Female based on their experience 
 
 In the Piechart, we can find the agewise employee percentage of company.
 
-### <a name="tech"></a>Technical Terms
+### <a name="tech"></a>Technical Specification
 
 Matplotlib is a graph plotting library in python that serves as a visualization utility.<br />
 It is a comprehensive library for creating static, animated, and interactive visualizations in Python and It can also be used in python 
