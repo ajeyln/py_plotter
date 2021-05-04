@@ -3,6 +3,7 @@ from matplotlib import style
 import pandas
 import os
 from fpdf import FPDF
+import numpy as np
 
 data = pandas.read_csv("data.csv")
 sorted_gender = data.sort_values("Gender")
@@ -12,6 +13,7 @@ sorted_join_year = data.sort_values("Year of Joining")
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 FILE_NAME = os.path.join(CURRENT_DIR, "plotter_images")
 
+'''
 def create_plot(title, xlabel, ylabel, filename):
     plt.title(title)
     plt.ylabel(ylabel)
@@ -19,6 +21,7 @@ def create_plot(title, xlabel, ylabel, filename):
     plt.legend(loc ="upper right", prop={"size":10})
     filepath = os.path.join(FILE_NAME, filename)
     plt.savefig(filepath)
+
 def create_histogram():
     age_employee = sorted_gender["Age"].tolist()
     bins = []
@@ -53,7 +56,10 @@ def create_line_graph():
 def create_bar_graph():
     year_of_join = sorted_join_year["Year of Joining"].tolist()
     join_year = []
+    width = 0.2
     [join_year.append(x) for x in year_of_join if x not in join_year]
+    join_year_female = np.arange(len(join_year))
+    join_year_male = [ i+width for i in join_year_female ]
     gender_female = sorted_gender[sorted_gender["Gender"] == "Female"]
     gender_male = sorted_gender[sorted_gender["Gender"] == "Male"]
     Average_salary_female = []
@@ -64,12 +70,10 @@ def create_bar_graph():
     for j in join_year:
         z = gender_male[gender_male["Year of Joining"] == j]["Salary"].mean()
         Average_salary_male.append(z)
-    plt.bar(join_year,Average_salary_female,
-    label="Female",color='m',width=.5)
-    plt.bar(join_year,Average_salary_male,
-    label="Male", color='r',width=.5)
+    plt.bar(join_year_female,Average_salary_female, label="Female",color='m', width=width)
+    plt.bar(join_year_male,Average_salary_male, label="Male", color='r', width=width)
+    plt.xticks(join_year_female, join_year)
     create_plot('Average Salary(Based on join Year)', 'Year', 'Average Salary', "02_bar_graph")
-
 def create_scatter_plot():
     gender_female = sorted_gender[sorted_gender["Gender"] == "Female"]
     gender_male = sorted_gender[sorted_gender["Gender"] == "Male"]
@@ -105,6 +109,7 @@ def create_pie_chart():
     filepath = os.path.join(FILE_NAME, '05_pie_chart')
     plt.savefig(filepath)
 
+'''
 def create_pdf():
     pdf = FPDF(orientation='P', unit='mm', format='A4')
     pdf.add_page()
@@ -130,9 +135,9 @@ def create_pdf():
     pdf.output(pdf_file,'F')
 
 if __name__ == "__main__":
-    create_histogram()
-    create_line_graph()
-    create_bar_graph()
-    create_scatter_plot()
-    create_pie_chart()
+#    create_histogram()
+#    create_line_graph()
+#   create_bar_graph()
+#    create_scatter_plot()
+#    create_pie_chart()
     create_pdf()
