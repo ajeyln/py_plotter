@@ -13,7 +13,6 @@ sorted_join_year = data.sort_values("Year of Joining")
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 FILE_NAME = os.path.join(CURRENT_DIR, "plotter_images")
 
-'''
 def create_plot(title, xlabel, ylabel, filename):
     plt.title(title)
     plt.ylabel(ylabel)
@@ -109,7 +108,6 @@ def create_pie_chart():
     filepath = os.path.join(FILE_NAME, '05_pie_chart')
     plt.savefig(filepath)
 
-'''
 def create_pdf():
     pdf = FPDF(orientation='P', unit='mm', format='A4')
     pdf.add_page()
@@ -135,9 +133,9 @@ def create_pdf():
     pdf.output(pdf_file,'F')
 
 if __name__ == "__main__":
-#    create_histogram()
-#    create_line_graph()
-#   create_bar_graph()
-#    create_scatter_plot()
-#    create_pie_chart()
+    create_histogram()
+    create_line_graph()
+   create_bar_graph()
+    create_scatter_plot()
+    create_pie_chart()
     create_pdf()
