@@ -3,7 +3,7 @@
 ## Table of Content
 
 * [Background](#background)
-* [Tasks(#task)
+* [Tasks](#task)
 * [Technical Specification](#tech)
     + [Line Graph](#line)
     + [Bar Graph](#bar)
