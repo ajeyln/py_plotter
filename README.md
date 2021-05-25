@@ -210,11 +210,12 @@ plt.title('Pie Plot')
 plt.show()
 ```
 
-![pie](./images/image7.png) <br />
+![pie](./images/image8.png) <br />
 In the above pie chart, we have divided the circle into 4 sectors or slices which represents the respective category
 (playing, sleeping, eating and working) along with the percentage they hold. Now, if we have noticed these slices
 adds up to 24 hrs, but the calculation of pie slices is automatically done.
 
+### <a name="useful"></a>Useful Links
 
 | **Sl. No.** | **Link** | **Remarks** |
 ----------|--------------|--------------
